@@ -41,6 +41,17 @@ The skill pushes against both failure modes:
 
 When the assistant can't tell whether you gave examples or a requirement, it either asks you one question or states its assumption before going ahead.
 
+## How to know it's working
+
+- When you give examples, the answer separates your items from the assistant's, e.g. "Your examples: …" and "Added: …".
+- Your own examples are still there, near the top, not replaced.
+- When you say "just these" or "only these", nothing extra is added.
+
+## Tradeoffs
+
+- Answers get a little longer, because the assistant adds a few items you didn't ask for.
+- The assistant decides what the category is. If it guesses wrong, the added items will feel off. Tell it the category, or say "just these" to turn expansion off for that request.
+  
 ## Installation
 
 The skill is a single folder containing `SKILL.md`:

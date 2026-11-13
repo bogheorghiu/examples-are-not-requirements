@@ -53,7 +53,7 @@ Each of these is a way to get this skill wrong. The "tell" is how you can spot i
 - **Handing the examples back as the answer.** Tell: your answer contains only the items the user named, nothing added. Doing only those is the same as doing nothing.
 - **Turning examples into a task list.** Tell: the user gave 2 examples and you stopped after doing exactly those 2.
 - **Treating "the user didn't mention it" as "the user doesn't want it."** Tell: you left something out only because the user didn't say it. They probably just didn't think of it.
-- **Over-expanding.** Tell: your additions outnumber or outrank the user's examples, drift outside the category, or bury what the user actually asked for.
+- **Over-expanding.** Tell: your additions bury or outrank the user's examples, drift outside the category, or crowd out what the user actually asked for.
 - **Replacing the user's examples.** Tell: the user's own examples are missing or demoted in your answer. Expand around them; don't swap them out.
 
 ## When NOT to use this skill

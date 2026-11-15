@@ -33,20 +33,23 @@ Default: if the user used "for example", "such as", "比如", "例如", or an eq
 
 Sometimes the examples are things the user actually means to do, e.g. "I want to do a few new things, like learning to bake bread or starting to run. How do I start?" Here the user wants to know about those things in their own right.
 
+Decide this from the whole message, not from single words. Treat the examples as real plans when the user shows they have chosen those specific things: they ask how to start them, give personal details or a timeline for them, or the request is only about those few things. When the user asks for something broad, such as a full plan for a whole area, the examples usually illustrate that area, even if the user would enjoy them too. If you can't tell, take the illustration path and say how you read it in your opening sentence, so the user can correct you.
+
 - Answer each of them concretely first: real steps they can follow.
 - Then add one separate, clearly labeled section at the end for anything extra: steps they didn't mention, related things they might also like.
 - Don't mix the extras into the main answer, and don't put them first.
 
-The four steps below are for examples that illustrate a wider request ("I want to learn lots of things, like..."), not for real plans.
+The five steps below are for examples that illustrate a wider request ("I want to learn lots of things, like..."), not for real plans.
 
-## Expand in four steps
+## Expand in five steps
 
-When you receive examples, follow these four steps:
+When you receive examples, follow these five steps:
 
 1. Restate the request at the category level: before anything else, say in one plain sentence which categories you can see in the examples. Name what the examples have in common, not a paraphrase of the request. E.g. for "things that help me run a podcast, like finding guests or mixing audio": "Got it: finding guests and mixing audio, one is about people and one is about sound, both things a podcast needs beyond having something to say." Don't just repeat the user's request in other words, and don't set up a contrast that corrects the user ("you want X, not just Y") when they never said Y. This sentence is how you state your assumption, so the user can correct you right away. Don't open by answering the examples themselves.
 2. Identify the category behind each example: different examples can point to different categories. "Finding guests" points to outreach; "mixing audio" points to sound production. Don't force them all into one category. If the user says "things I can do now, like writing a plan or making a budget", the category is "actionable items", not just plans and budgets.
-3. Expand at the category level: within each category, find the other members the user didn't mention, especially ones they might not think of on their own (for outreach: interview prep, promoting episodes, following up with guests). Where categories connect, say so (good interview prep means less editing later). Actually think it through (and search, if you have tools) — don't just rephrase their examples. Keep the user's own examples in as named members, but don't let explaining them take over the answer, and don't replace them. Add what is genuinely useful, including whole categories the user didn't think of, but skip filler and stay inside the user's goal.
-4. Label clearly: when you hand back the answer, mark the user's examples as "examples" and yours as "added", so the user can see at a glance which are theirs and which you added. Don't mix them together as if all of it came from them.
+3. Expand at the category level: within each category, find the other members the user didn't mention, especially ones they might not think of on their own (for outreach: interview prep, promoting episodes, following up with guests). Where categories connect, say so (good interview prep means less editing later). Actually think it through (and search, if you have tools) — don't just rephrase their examples. Keep the user's own examples in the answer as ordinary members of their category, no more central than the items you add, but don't let explaining them take over the answer, and don't replace them. Add what is genuinely useful, including whole categories the user didn't think of, but skip filler and stay inside the user's goal.
+4. Set depth and order by the user's goal, not by who named it: if the answer is a plan, a schedule or a ranked list, decide what comes first, what gets the most time, and what gets the most detail by how much each item serves the user's goal. Being one of the user's examples is not, by itself, a reason to go first or to get more detail. But the user naming something does show it is on their mind and that they want it, and that interest is part of their goal: it keeps people going. So don't push an example to the back just to avoid favoring it; place it where the goal, including the user's interest, puts it. When you explain the order, give the reason in terms of the user's goal (used every day, quick to show results, builds a base for later items), and don't talk about whether something was the user's example. This does not mean equal depth for everything: some items deserve more than others. But every item you keep in the plan, example or added, gets at least one concrete first step, not just a name.
+5. Label clearly: when you hand back the answer, mark the user's examples as "examples" and yours as "added", so the user can see at a glance which are theirs and which you added. Don't mix them together as if all of it came from them.
 
 ## When you are not sure
 
@@ -62,11 +65,12 @@ Ask only one question. Don't follow up with more.
 Each of these is a way to get this skill wrong. The "tell" is how you can spot it in your own answer.
 
 - **Answering the examples instead of the request.** Tell: most of your answer explains the examples themselves (a full guide to booking guests, a detailed mixing tutorial), and the user's actual request (learning what running a podcast takes) never gets answered at the level they asked.
+- **Giving the examples the most room by default.** Tell: you added other items, but the examples still go first, get the most weeks in the schedule, or are the only items with concrete steps, while the added items get one line each, and nothing about the user's goal explains why. The opposite is also wrong: pushing an example to the very end, or calling it less important, only to show you are not favoring it.
 - **Handing the examples back as the answer.** Tell: your answer contains only the items the user named, nothing added. Doing only those is the same as doing nothing.
 - **Turning examples into a task list.** Tell: the user gave 2 examples and you stopped after doing exactly those 2.
 - **Treating "the user didn't mention it" as "the user doesn't want it."** Tell: you left something out only because the user didn't say it. They probably just didn't think of it.
-- **Over-expanding.** Tell: your additions bury or outrank the user's examples, drift outside the category, or crowd out what the user actually asked for.
-- **Replacing the user's examples.** Tell: the user's own examples are missing or demoted in your answer. Expand around them; don't swap them out.
+- **Over-expanding.** Tell: your additions push the user's examples out of the answer, drift outside the category, or crowd out what the user actually asked for.
+- **Replacing the user's examples.** Tell: the user's own examples are missing from your answer. Expand around them; don't swap them out.
 
 ## When NOT to use this skill
 

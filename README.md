@@ -6,21 +6,39 @@ An agent skill that stops AI assistants from treating your examples as a complet
 
 Have you ever given an agent an example, only for it to take that example as the actual requirement and run with it? This skill fixes that.
 
-When you say "I want to learn things like photography and cooking", you are describing a *kind* of thing, not handing over a closed checklist. Without this skill, assistants often do exactly the two things you named and stop. With it, the assistant works out the category behind your examples, keeps your examples, and adds a few relevant items you didn't mention, clearly labeled so you can tell which are yours and which it added.
+You write a long message about what you want, and somewhere in the middle you drop in a couple of examples to show what you mean. The assistant then answers the examples in detail and never gets to your actual request. With this skill, it first tells you in one sentence which categories it thinks your examples point to, then works at that level: it keeps your examples, adds relevant things you didn't mention, links the categories together, and labels which items are yours and which it added.
 
 ## Before and after
 
-**You:** "My action list should have things I can do now, like writing a plan or making a budget."
+**You:** "I want to learn lots of new things, at every level. For example, how to build and run an independent online store for cross-border e-commerce, or how Japanese and American editing styles differ."
 
-**Without the skill:**
-
-- Write a plan
-- Make a budget
+**Without the skill:** a full five-step guide to building an online store, then a seven-row table comparing Japanese and American editing styles. About 90% of the answer explains your two examples. "Learning lots of new things" gets one short closing paragraph.
 
 **With the skill:**
 
-- Your examples: write a plan, make a budget
-- Added: set a deadline, collect one reference example
+> Got it: you want to learn practical skills at the level of business and starting your own business, and video creation. The online store and the editing styles are two examples you gave.
+>
+> **Business and starting a business**
+> - Your example: building and running an independent online store
+> - Added: choosing products and researching the market, pricing and margins, getting traffic, conversion, repeat customers, payments and compliance
+>
+> **Video creation**
+> - Your example: Japanese vs American editing styles
+> - Added: story structure, shot language, sound design, colour grading, thumbnails and titles, how each platform works
+>
+> **Where they connect:** if you can edit video, you can make your own product videos and ads for the store.
+
+(Combined and shortened from two real test answers. See [Test results](#test-results).)
+
+## Test results
+
+Tested in a private chat with no memory, same model, once with the skill turned off and once with it on. The full cases and expected behaviour are in [`evals/evals.json`](evals/evals.json); notes are in [`evals/RESULTS.md`](evals/RESULTS.md).
+
+- **Long message with examples buried inside** (the main problem this skill solves): without the skill, about 1.5 of 5 criteria met; with the skill, **5 of 5, in 2 out of 2 runs**.
+- **Short one-line requests with examples**: modern models already expand these fairly well on their own. The visible change from the skill is clearer structure and explicit "your examples / added" labels.
+- **Cases where it should not expand** (a closed list, no examples, a format to copy, a test case): 4 of 4 handled correctly with the skill on. It did not make any of them worse.
+
+Honest limits: each case was run only once or twice, and the answers were graded by the same AI assistant that helped write the skill. On very simple requests the assistant sometimes skips loading the skill and works from its description alone.
 
 ## When it triggers
 
@@ -36,24 +54,23 @@ When you say "I want to learn things like photography and cooking", you are desc
 
 ## What it guards against
 
-The skill pushes against both failure modes:
-
+- **Answering the examples instead of the request:** the examples take over the answer, and what you actually asked for never gets answered. This is the most common failure, and the main one this skill fixes.
 - **Too little:** handing your examples back as the whole answer, or stopping after doing exactly the items you named.
 - **Too much:** burying your request under a flood of additions, drifting outside the category, or replacing your examples with the assistant's own.
 
-When the assistant can't tell whether you gave examples or a requirement, it either asks you one question or states its assumption before going ahead.
-
 ## How to know it's working
 
-- When you give examples, the answer separates your items from the assistant's, e.g. "Your examples: …" and "Added: …".
-- Your own examples are still there, near the top, not replaced.
+- The answer opens with one sentence naming the categories it understood, e.g. "Got it: you want to learn skills at the level of business and video creation." If that sentence is wrong, correct it right there.
+- Your examples are named, but not answered at length.
+- Your items and the assistant's are labeled separately, e.g. "Your examples: …" and "Added: …".
 - When you say "just these" or "only these", nothing extra is added.
 
 ## Tradeoffs
 
 - Answers get a little longer, because the assistant adds a few items you didn't ask for.
+- If you actually wanted a deep dive into one of your examples, you'll need to ask for it as a follow-up. The assistant usually offers this at the end.
 - The assistant decides what the category is. If it guesses wrong, the added items will feel off. Tell it the category, or say "just these" to turn expansion off for that request.
-  
+
 ## Installation
 
 The skill is a single folder containing `SKILL.md`:

@@ -89,7 +89,7 @@
       "Opens by naming the category it understood (e.g. easy party snacks) or asks one short question, before listing items",
       "Asks at most one question",
       "If it adds items, keeps crisps and labels the additions",
-      "Added items stay inside the category (snacks), with no drinks or tableware"
+      "Non-snack party items (drinks, napkins, plates) appear only in a separate section at the end, if at all"
     ]
   },
   {

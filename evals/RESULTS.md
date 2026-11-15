@@ -54,6 +54,8 @@ These were run with an early version of the skill, before the "restate the categ
 | `single-representative-no-marker` | Planned the channel, no category expansion | Nearly the same |
 | `ambiguous-state-assumption` | Full list, no labels | Labeled, category named in a heading; one drift outside "snacks" (drinks, napkins) |
 
+Retest of `ambiguous-state-assumption` on the current version: crisps kept and labeled, five labeled groups of other snacks, no drinks, and napkins and plates only in a separate "Easy to forget" section at the end. The earlier drift is now handled by the real-plans rule.
+
 Finding: modern models already expand one-line requests with "for example" fairly well. The skill's visible effect there is structure and labels.
 
 ## Cases where it should not expand
@@ -81,6 +83,18 @@ Two messages that look alike but mean different things.
 | No other activities mixed into the main answer | No (a table column listed painting, instruments, an online shop) | Yes |
 
 The fix added a "When the examples are real plans" section and Case 6 to the skill. Case 6 uses different examples (baking bread, starting to run) so the test question was not answered in advance.
+
+## On another model: OpenAI Codex
+
+The skill was installed in Codex straight from this GitHub repository with Codex's built-in skill installer. No errors or warnings, including about the description length.
+
+| Case | Skill off | Skill on |
+|---|---|---|
+| `long-message-examples-buried` (freelance) | About 3.5 of 5: a good six-layer map with no labels, then a separate section answering both examples | 5 of 5: a ten-layer map along the whole freelance process, ★ marking the user's two examples, plus a list of easily missed skills |
+| `real-plans-answer-first` | Not run | Pass: a two-week plan for each, extras in a separate labeled section at the end |
+| `closed-list-no-expand` | Not run | Pass: asked only about the three items and said it would buy nothing else |
+
+Codex without the skill already does better than Claude without it, so the gap is smaller. One note: in the real-plans answer Codex referred to the previous question, so it may have carried context over from an earlier session.
 
 ## What the tests changed
 

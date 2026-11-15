@@ -67,9 +67,20 @@ Finding: modern models already expand one-line requests with "for example" fairl
 
 The skill did not make any of these worse.
 
-## Not yet tested
+## When the examples are real plans
 
-- `unrelated-concrete-examples-answer-directly`: two examples with no shared purpose (opening a coffee shop, Japanese vs Western street photography). Here each example reads like a real request, and answering them directly is probably right. With the skill off, the assistant did answer both directly. Whether the skill wrongly turns them into an abstract map has not been tested yet.
+Two messages that look alike but mean different things.
+
+- `broad-learning-unrelated-examples`: "I want to learn lots of new things, at every level, like how to open and run a coffee shop, or how Japanese and Western street photography differ." The opening says the user wants broad learning, so treating the examples as samples is right. With the skill on, the answer named the two kinds of knowledge and added other directions of each kind. The author judged this correct.
+- `real-plans-answer-first`: "I want to do a few new things, like opening a coffee shop or learning street photography. How do I start?" Here the user means to do these things.
+
+| Criterion | Skill on, before the fix | Skill on, after the fix |
+|---|---|---|
+| Answers both plans concretely first | Yes | Yes |
+| Extras in one separate, labeled section at the end | No | Yes |
+| No other activities mixed into the main answer | No (a table column listed painting, instruments, an online shop) | Yes |
+
+The fix added a "When the examples are real plans" section and Case 6 to the skill. Case 6 uses different examples (baking bread, starting to run) so the test question was not answered in advance.
 
 ## What the tests changed
 
@@ -78,4 +89,5 @@ The skill did not make any of these worse.
 - Rewrote that step after the author found an opening sentence odd: it paraphrased the request and added a contrast the author never made ("you want X, not just Y"). The step now asks for one plain sentence naming what the examples have in common.
 - Replaced "add a focused few" with "add what the user would not think of, without filler", after the author said the longer set of additions was genuinely useful.
 - Moved the key rules into the description, after seeing the assistant sometimes act on the description without loading the full skill.
-- Fixed criteria in `evals.json` that were too loose or did not fit their case.
+- Added the "real plans" rule after the author pointed out that when the examples are things you actually plan to do, you want those answered first, with extras kept in a separate section.
+- Fixed criteria in `evals.json` that were too loose or did not fit their case, including one test whose expected answer turned out to be wrong.

@@ -107,15 +107,27 @@
     ]
   },
   {
-    "name": "unrelated-concrete-examples-answer-directly",
+    "name": "broad-learning-unrelated-examples",
     "skills": [
       "examples-are-not-requirements"
     ],
     "query": "我想要学习很多新知识，各种层面的新知识，比如怎么开一家咖啡店、怎么经营，比如街头摄影里日系风格和欧美风格有什么区别，各有什么特点。",
     "expected_behavior": [
-      "Recognises that the two examples have no shared purpose and each reads like a real, standalone request",
-      "Gives real, useful answers to both (opening and running a coffee shop; Japanese vs Western street photography), or asks one short question about which the user wants",
-      "Does not replace those answers with an abstract map of categories"
+      "Treats the two examples as samples of broad learning, because the message opens with wanting to learn many kinds of things",
+      "Names the kind of knowledge each example stands for and adds other directions of the same kinds",
+      "Marks which items came from the user"
+    ]
+  },
+  {
+    "name": "real-plans-answer-first",
+    "skills": [
+      "examples-are-not-requirements"
+    ],
+    "query": "我最近想做几件新的事，比如开一家咖啡店，比如学街头摄影，应该怎么开始？",
+    "expected_behavior": [
+      "Answers both plans concretely first, with steps the user can follow (opening a coffee shop; learning street photography)",
+      "Puts any extras in one separate, clearly labeled section at the end",
+      "Does not mix other activities of the same kind (e.g. painting, opening an online shop) into the main answer"
     ]
   }
 ]

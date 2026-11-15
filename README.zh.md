@@ -41,6 +41,7 @@
   - 上面这段接单的消息：不装 skill 大约 2 条；装了，**5 条全部达到，跑了 4 次，4 次都是**。这几次还清空了账号里的个人偏好。
 - **一句话的短请求**：现在的模型自己就会扩展得不错。装了 skill 后，看得到的变化是结构更清楚，你说的和 AI 补的分开标注。
 - **例子是真实计划的时候**（"我最近想做几件新的事，比如开一家咖啡店，比如学街头摄影，应该怎么开始？"）：装了 skill 后，两件事都先具体回答，补充单独放在最后一节。
+- **换一个 AI 测：**在 OpenAI Codex 上也测过。长消息那题从大约 3.5 条提到 5 条全部达到，真实计划和写死清单两题都通过。
 - **不该扩展的情况**（写死的清单、没有例子、照着模仿的格式、测试用例）：装了 skill 后 4 题全对，没有把任何一题变差。
 
 诚实说明局限：每道题只跑了几次，判分的是参与写这个 skill 的同一个 AI 助手。遇到很简单的请求，AI 有时不加载 skill 正文，只看 description 就动手。
@@ -79,6 +80,16 @@
 
 ## 安装
 
+最快的方法（电脑上需要装有 Node.js）：
+
+```
+npx skills add reshiramsq18-alt/examples-are-not-requirements
+```
+
+它会问你要装给哪些 AI 工具，然后自动把 skill 放到对应的文件夹里。
+
+也可以手动安装：
+
 这个 skill 就是一个文件夹，里面只有一个 `SKILL.md`：
 
 ```
@@ -87,6 +98,12 @@ examples-are-not-requirements/
 ```
 
 把 `examples-are-not-requirements` 文件夹复制到任何支持 `SKILL.md` 的 agent 的 skills 目录里。Claude Code 的位置是 `~/.claude/skills/`（对所有项目生效），或者项目里的 `.claude/skills/`。
+
+用 OpenAI Codex 的话，可以让它自带的 skill 安装工具直接从这个仓库装，路径填 `examples-are-not-requirements`，装完重启 Codex：
+
+```
+$skill-installer 从 GitHub 安装这个 skill：仓库 reshiramsq18-alt/examples-are-not-requirements，路径 examples-are-not-requirements
+```
 
 `SKILL.md` 本身是英文写的，中文用户照样可以用。里面已经包含中文的触发词。
 

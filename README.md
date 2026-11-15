@@ -41,6 +41,7 @@ Tested in a private chat with no memory, same model, once with the skill turned 
   - The freelance message above: without the skill about 2 of 5; with it, **5 of 5 in 4 out of 4 runs**. Saved personal preferences were also cleared for these runs.
 - **Short one-line requests with examples**: modern models already expand these fairly well on their own. The visible change from the skill is clearer structure and explicit labels for your items.
 - **Examples that are real plans** ("I want to do a few new things, like opening a coffee shop or learning street photography. How do I start?"): with the skill on, both plans are answered concretely first, and extras go in a separate section at the end.
+- **On another model:** also tested in OpenAI Codex. The long-message case went from about 3.5 of 5 to 5 of 5, and the real-plans and closed-list cases passed.
 - **Cases where it should not expand** (a closed list, no examples, a format to copy, a test case): 4 of 4 handled correctly with the skill on. It did not make any of them worse.
 
 Honest limits: each case was run only a few times, and the answers were graded by the same AI assistant that helped write the skill. On very simple requests the assistant sometimes skips loading the skill and works from its description alone.
@@ -79,6 +80,16 @@ Honest limits: each case was run only a few times, and the answers were graded b
 
 ## Installation
 
+The quickest way, if you have Node.js installed:
+
+```
+npx skills add reshiramsq18-alt/examples-are-not-requirements
+```
+
+It asks which of your AI tools to install it for and copies the skill into the right folder.
+
+To install by hand instead:
+
 The skill is a single folder containing `SKILL.md`:
 
 ```
@@ -87,6 +98,12 @@ examples-are-not-requirements/
 ```
 
 Copy the `examples-are-not-requirements` folder into the skills directory of any agent that supports `SKILL.md` skills. For Claude Code, that is `~/.claude/skills/` (all projects) or `.claude/skills/` inside a project.
+
+For OpenAI Codex, you can ask its built-in skill installer to install from this repository, using the path `examples-are-not-requirements`, then restart Codex:
+
+```
+$skill-installer install the skill from GitHub repo reshiramsq18-alt/examples-are-not-requirements, path examples-are-not-requirements
+```
 
 ## License
 

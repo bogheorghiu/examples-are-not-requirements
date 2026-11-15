@@ -1,5 +1,7 @@
 # examples-are-not-requirements
 
+English | [中文](README.zh.md)
+
 An agent skill that stops AI assistants from treating your examples as a complete list.
 
 Have you ever given an agent an example, only for it to take that example as the actual requirement and run with it? This skill fixes that.

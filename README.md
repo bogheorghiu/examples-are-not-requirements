@@ -10,35 +10,39 @@ You write a long message about what you want, and somewhere in the middle you dr
 
 ## Before and after
 
-**You:** "I want to learn lots of new things, at every level. For example, how to build and run an independent online store for cross-border e-commerce, or how Japanese and American editing styles differ."
+**You:** "I want to learn lots of new things that will help me take on freelance work, at every level. For example, how to negotiate prices with clients, or how to lay out a portfolio so it looks better."
 
-**Without the skill:** a full five-step guide to building an online store, then a seven-row table comparing Japanese and American editing styles. About 90% of the answer explains your two examples. "Learning lots of new things" gets one short closing paragraph.
+**Without the skill:** a short map of the skills freelancing takes, then two long sections of tips, one on negotiating prices and one on portfolio layout. About 60% of the answer explains your two examples.
 
 **With the skill:**
 
-> Got it: you want to learn practical skills at the level of business and starting your own business, and video creation. The online store and the editing styles are two examples you gave.
+> Your two examples are about how to talk business and how to present your work. Taking on freelance work really means running a one-person company, so here it is layer by layer. ★ marks what you mentioned.
 >
-> **Business and starting a business**
-> - Your example: building and running an independent online store
-> - Added: choosing products and researching the market, pricing and margins, getting traffic, conversion, repeat customers, payments and compliance
+> 1. Positioning: what you sell and to whom
+> 2. Getting clients
+> 3. ★ Negotiating and pricing
+> 4. Contracts and confirming the brief
+> 5. Delivery and project management
+> 6. ★ Portfolio and presenting yourself
+> 7. Money and risk
+> 8. Keeping clients and getting referrals
+> 9. Managing yourself
 >
-> **Video creation**
-> - Your example: Japanese vs American editing styles
-> - Added: story structure, shot language, sound design, colour grading, thumbnails and titles, how each platform works
->
-> **Where they connect:** if you can edit video, you can make your own product videos and ads for the store.
+> If you want an order: 3, then 4, then 6. Pricing and contracts decide whether you lose money; the portfolio decides whether you get work.
 
-(Combined and shortened from two real test answers. See [Test results](#test-results).)
+(Shortened from a real test answer, which also had a few points under each layer. See [Test results](#test-results).)
 
 ## Test results
 
 Tested in a private chat with no memory, same model, once with the skill turned off and once with it on. The full cases and expected behaviour are in [`evals/evals.json`](evals/evals.json); notes are in [`evals/RESULTS.md`](evals/RESULTS.md).
 
-- **Long message with examples buried inside** (the main problem this skill solves): without the skill, about 1.5 of 5 criteria met; with the skill, **5 of 5, in 2 out of 2 runs**.
-- **Short one-line requests with examples**: modern models already expand these fairly well on their own. The visible change from the skill is clearer structure and explicit "your examples / added" labels.
+- **Long message with examples buried inside** (the main problem this skill solves), tested with two different messages:
+  - A real message from the author, kept private: without the skill about 1.5 of 5 criteria met; with it, **5 of 5 in 2 out of 2 runs**.
+  - The freelance message above: without the skill about 2 of 5; with it, **5 of 5 in 4 out of 4 runs**. Saved personal preferences were also cleared for these runs.
+- **Short one-line requests with examples**: modern models already expand these fairly well on their own. The visible change from the skill is clearer structure and explicit labels for your items.
 - **Cases where it should not expand** (a closed list, no examples, a format to copy, a test case): 4 of 4 handled correctly with the skill on. It did not make any of them worse.
 
-Honest limits: each case was run only once or twice, and the answers were graded by the same AI assistant that helped write the skill. On very simple requests the assistant sometimes skips loading the skill and works from its description alone.
+Honest limits: each case was run only a few times, and the answers were graded by the same AI assistant that helped write the skill. On very simple requests the assistant sometimes skips loading the skill and works from its description alone. One known open question: when the examples are two unrelated, concrete requests (say, opening a coffee shop and learning street photography), answering them directly is probably right, and the skill has not been tested on that yet.
 
 ## When it triggers
 

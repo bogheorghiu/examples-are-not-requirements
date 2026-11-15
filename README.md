@@ -40,9 +40,10 @@ Tested in a private chat with no memory, same model, once with the skill turned 
   - A real message from the author, kept private: without the skill about 1.5 of 5 criteria met; with it, **5 of 5 in 2 out of 2 runs**.
   - The freelance message above: without the skill about 2 of 5; with it, **5 of 5 in 4 out of 4 runs**. Saved personal preferences were also cleared for these runs.
 - **Short one-line requests with examples**: modern models already expand these fairly well on their own. The visible change from the skill is clearer structure and explicit labels for your items.
+- **Examples that are real plans** ("I want to do a few new things, like opening a coffee shop or learning street photography. How do I start?"): with the skill on, both plans are answered concretely first, and extras go in a separate section at the end.
 - **Cases where it should not expand** (a closed list, no examples, a format to copy, a test case): 4 of 4 handled correctly with the skill on. It did not make any of them worse.
 
-Honest limits: each case was run only a few times, and the answers were graded by the same AI assistant that helped write the skill. On very simple requests the assistant sometimes skips loading the skill and works from its description alone. One known open question: when the examples are two unrelated, concrete requests (say, opening a coffee shop and learning street photography), answering them directly is probably right, and the skill has not been tested on that yet.
+Honest limits: each case was run only a few times, and the answers were graded by the same AI assistant that helped write the skill. On very simple requests the assistant sometimes skips loading the skill and works from its description alone.
 
 ## When it triggers
 
@@ -66,6 +67,7 @@ Honest limits: each case was run only a few times, and the answers were graded b
 
 - The answer opens with one sentence naming the categories it understood, e.g. "Got it: you want to learn skills at the level of business and video creation." If that sentence is wrong, correct it right there.
 - Your examples are named, but not answered at length.
+- If your examples are things you actually plan to do, each one gets a concrete answer first, and extras come in a separate section at the end.
 - Your items and the assistant's are labeled separately, e.g. "Your examples: …" and "Added: …".
 - When you say "just these" or "only these", nothing extra is added.
 

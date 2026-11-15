@@ -1,17 +1,25 @@
 # Test results
 
-## v1.1.0: clean tests
+## v1.1.0: environment-checked tests
 
-The v1.0.0 tests below were run with the author's saved personal preferences still on, and those preferences included a rule about examples. So for v1.1.0 everything that matters was retested in a clean setup. The raw answers, keys and run instructions are in [`clean-runs/`](clean-runs/).
+The v1.0.0 tests further down were run with the author's saved personal preferences still on, and those preferences included a rule about examples. So for v1.1.0 the main behavior was retested in a setup checked for these influences. The raw answers, keys, run instructions and step-0 environment checks are in [`clean-runs/`](clean-runs/).
 
 How:
 
-- A new chat with memory off for that chat, the author's personal preferences and own skills switched off. Before each round, the runner and a fresh sub-agent listed everything they could see about the user: nothing except the account email the system adds automatically.
+- A new chat with memory off for that chat, and the author's personal preferences and own skills switched off. Before each round, the runner and a fresh sub-agent listed everything they could see about the user. Neither saw any name, preferences, memory or past chats; the runner saw only the account email that the system adds automatically (see `clean-runs/README.md` for how this was handled in round 1).
 - Every answer comes from a new sub-agent. Skill groups got the full `SKILL.md` pasted in as an already-loaded skill; the no-skill group got the bare message. The runner only saw neutral version names.
 - The main test message: "我想学习各种能够提高生活质量的实用技能，比如摄影和烹饪。请帮我制定一个全面的学习计划。" ("I want to learn practical skills that improve my quality of life, such as photography and cooking. Please make me a full learning plan.")
-- Results are counts of things anyone can check in the raw answers.
+- Results are counts of things anyone can check in the raw answers. Each check below says what was counted.
 
-Limits: five runs per group at most; the counting was done by the AI assistant that helped write the skill, and it saw the keys, so it was not blind; round 2's model was not checked.
+Limits:
+
+- Five runs per group at most, mostly on one message.
+- The counting was done by the AI assistant that helped write the skill, and it saw the keys, so it was not blind. The counts were then rechecked by OpenAI Codex, which corrected several of them; the numbers below are the corrected ones.
+- Pasting the skill in tests how well a model follows it once loaded. It does not test whether the skill triggers by itself, whether the agent actually opens the file, or how it behaves from the description alone.
+- Round 2's model was not checked, and round 4's runner did not report it back.
+- The environment checks rely on the runner and a sub-agent reporting what they can see. They found no user information, but cannot rule out every hidden influence, so these are "environment-checked" tests, not proof of a perfectly clean setup.
+
+What "builds the plan around the examples" means below: the answer calls the two examples "core" or "the main line", says the plan is "mainly" or "based on" them, or makes them the only main focus of the first stage. The exact words are listed for each count. This is an observation, not a failure in itself: whether it is reasonable depends on the user's goal, preferences and constraints, not on where the examples sit in the plan.
 
 ### Round 1: no skill vs v1.0.0 vs draft A (patches 1–2), 5 runs each
 
@@ -19,12 +27,16 @@ Limits: five runs per group at most; the counting was done by the AI assistant t
 |---|---|---|---|
 | Opens by naming what the examples have in common | 0 of 5 | 5 of 5 | 5 of 5 |
 | Labels the user's examples and the added items | 0 of 5 | 5 of 5 | 5 of 5 |
-| Calls the examples "core", "main line" or "the focus" | 5 of 5 | 3 of 5 | 1 of 5 |
+| Builds the plan around the examples | 5 of 5 | 3 of 5 | 1 of 5 |
 | Gives each example its own full chapter | 2 of 5 | 0 of 5 | 0 of 5 |
 
-Finding: in a clean setup, the model without the skill still builds the whole plan around the two examples. So the problem is the model's default, not the author's preferences, and the skill does fix the biggest part of it.
+- No skill: "摄影和烹饪是重点" (883), "核心" layer (461), first stage "主攻：烹饪 + 摄影" (786), "主线组合" (624), "核心" and "主线" (053). Own chapters: 883, 053.
+- v1.0.0: "以你的两个例子为主" (261), "以你的两个例子为主线" (809), "放在核心位置" (519).
+- Draft A: "摄影和烹饪会作为核心保留" (756).
 
-Left over: in both skill versions, the examples still got the concrete steps ("learn 5 home dishes", "rule of thirds"), while most added skills got one line.
+Finding: in these five runs on this message, the model without the skill built the whole plan around the two examples, even with no preferences in play. Both skill versions reduced this.
+
+Left over: in both skill versions, the examples still got the most detailed steps ("learn 5 home dishes", "rule of thirds"), while added skills usually got shorter ones.
 
 ### Round 2: draft B (patches 1–4) vs draft A, 5 runs each
 
@@ -32,25 +44,40 @@ Draft B adds one step: order and depth follow the user's goal, not who named an 
 
 | Check | Draft B | Draft A |
 |---|---|---|
-| Every item, added ones included, has a concrete first step | 5 of 5 | most added items had none |
-| Calls the examples "core" or "the main line" | 0 of 5 | 2 of 5 |
-| Pushes photography, which the user named, to the last stage | 2 of 5 | 1 of 5 |
-| Tells the user "this is not because it was your example" | several times | 0 |
+| Format: explicitly labels a "first step" (第一步) for each item in the staged plan | 5 of 5 | 0 of 5 |
+| Behavior: every item in the staged plan has a concrete starting action | not scored separately | not scored separately |
+| Builds the plan around the examples | 0 of 5 | 2 of 5 ("作为核心保留" 249, "以你的两个例子为主" 196) |
+| Photography, which the user named, starts only in the final stage | 1 of 5 (245) | 0 of 5 |
+| Photography starts in the second half of the plan | 2 of 5 (245, 976) | 1 of 5 (858) |
+| Tells the user the order is "not because it was your example" or similar | 4 of 5 (706, 492, 245, 976) | 0 of 5 |
 
-Two new problems: draft B over-corrected by pushing an example the user wanted to the back, and it said its own rule out loud.
+The "first step" row only shows a change in format. Draft A answers also gave concrete actions for many items (for example 196.md), so it is not evidence that the plans became more actionable.
 
-### Round 3: v1.1.0 (patches 1–5), 19 runs over 7 messages
+Two things to fix: draft B started photography later more often (the answers gave reasons such as "it is more about enjoyment than daily needs", so this shows a later start, not proof of deliberate over-correction), and it stated its own rule to the user.
 
-Patch 5: the user naming something shows they want it, and that interest is part of the goal, so an example is not pushed back just to avoid favoring it; reasons for the order are given in terms of the goal, never "whether it was your example".
+### Round 3: draft C (patches 1–5), 19 runs over 7 messages
 
-- **Main message, 5 runs:** names the categories and labels items 5 of 5; calls the examples "core" 0 of 5; every item has a first step 5 of 5; photography is in the first stage 3 times and the second stage 2 times, never last.
-- **New examples, 3 runs each** (to check the skill was not tuned to one message): healthy habits ("like going to bed early and drinking more water") and workplace skills ("like making slides and writing emails"). Same behavior in 6 of 6; order explained by the goal, e.g. structured thinking first because slides and emails both rest on it.
-- **Cases that must not change, 2 runs each:** a closed list ("only these three"), a format to copy, real plans ("next month I'll start photography and cooking, 5 hours a week, how do I start?"), and a podcast message with examples. 8 of 8 passed.
-- **Still seen once in 19 runs:** one answer said "not ordered by who proposed it". Left as is, to avoid adding rules for a single case.
+Patch 5: naming something is a sign of interest, which is part of the goal, so an example is not pushed back just to avoid favoring it; reasons for the order are given in terms of the goal, never "whether it was your example".
 
-## v1.0.0 tests
+- **Main message, 5 runs:** names the categories 5 of 5; labels items 5 of 5; builds the plan around the examples 0 of 5; explicitly labels a first step for every item in the staged plan 5 of 5 (format; actionability not scored separately); photography starts in the first stage 3 times and the second stage 2 times, never in the last.
+- **New examples, 3 runs each** (to check the skill was not tuned to one message): healthy habits ("like going to bed early and drinking more water") and workplace skills ("like making slides and writing emails"). Names the categories 6 of 6; labels items 6 of 6; explains the order by the goal 6 of 6, e.g. structured thinking first because slides and emails both rest on it.
+- **Cases that must not change, 2 runs each:** a closed list ("only these three"): nothing added, 2 of 2. A format to copy: three lines in the given format, 2 of 2 (one answer also added a short opening line and an offer to adjust, 315). Real plans ("next month I'll start photography and cooking, 5 hours a week, how do I start?"): both answered concretely first, extras in a separate last section, 2 of 2. A podcast message with examples: categories named and items labeled, 2 of 2.
+- **Stated its own rule once in 19 runs:** "不按是谁提出的来排" (290). Left as is, to avoid adding rules for a single case.
 
-These ran with personal preferences on (see the correction below), so treat them as weaker evidence than the clean tests above.
+### Round 4: v1.1.0, targeted regression check, 7 runs
+
+After an outside review, the final version changed the description, Case 1, Case 4 and the wording on how much weight examples get. Round 4 checks those changes. The scoring rules were fixed before any answer was generated ([`clean-runs/round-4/rubric.md`](clean-runs/round-4/rubric.md)); item-by-item scores with quotes are in [`clean-runs/round-4/scores.md`](clean-runs/round-4/scores.md).
+
+- **Main message, 3 runs:** names the categories, labels items, adds unmentioned skills, gives every item in the staged plan a concrete starting action, and explains the order by the goal, 3 of 3. No answer stated its own rule. Both examples started in the first stage each time, with goal-based reasons ("used every day", "interest keeps you going").
+- **A named channel topic, 1 run each:** the original French cooking case and a new one ("a channel teaching smartphone photography to retired people"). Both stayed on the named topic and audience; other directions appeared only as one line marked optional.
+- **A named reminder, 1 run each:** the original Case 1 and a new one ("remind me to use 压缩宝 when I compress videos", with two unrelated tools mentioned). Both reminded only about the named tool for the named task, and both said honestly that they cannot carry a reminder into a new chat.
+- **Noticed while scoring:** one answer (910) also promised, unasked, to remind the user about the other two tools for other tasks. The frozen rules did not cover this, so it is recorded as an observation, not a failure.
+
+Conclusion: these 7 targeted regression checks found none of the target problems. This does not show the version is stable, and does not test whether it triggers by itself after a normal install.
+
+## v1.0.0 tests (historical)
+
+These ran with personal preferences on (see the correction below), and their raw answers were not kept, so they cannot be checked independently. Treat them as a historical record, weaker than the environment-checked tests above.
 
 How the tests were run:
 

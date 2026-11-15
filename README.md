@@ -2,9 +2,9 @@
 
 English | [中文](README.zh.md)
 
-An agent skill that stops AI assistants from treating your examples as a complete list.
+An agent skill that helps AI assistants stop treating your examples as a complete list.
 
-Have you ever given an agent an example, only for it to take that example as the actual requirement and run with it? This skill fixes that.
+Have you ever given an agent an example, only for it to take that example as the actual requirement and run with it? This skill is meant to help with that.
 
 You write a long message about what you want, and somewhere in the middle you drop in a couple of examples to show what you mean. The assistant then answers the examples in detail and never gets to your actual request. With this skill, it first tells you in one sentence which categories it thinks your examples point to, then works at that level: it keeps your examples, adds relevant things you didn't mention, links the categories together, and labels which items are yours and which it added.
 
@@ -14,7 +14,7 @@ You write a long message about what you want, and somewhere in the middle you dr
 
 **You:** "I want to learn lots of new things that will help me take on freelance work, at every level. For example, how to negotiate prices with clients, or how to lay out a portfolio so it looks better."
 
-**Without the skill:** a short map of the skills freelancing takes, then two long sections of tips, one on negotiating prices and one on portfolio layout. About 60% of the answer explains your two examples.
+**Without the skill:** a short map of the skills freelancing takes, then two long sections of tips, one on negotiating prices and one on portfolio layout. About 60% of the answer explains your two examples (from an earlier test; see the limits below).
 
 **With the skill:**
 
@@ -36,23 +36,26 @@ You write a long message about what you want, and somewhere in the middle you dr
 
 ## Test results
 
-### v1.1.0 (clean tests)
+### v1.1.0 (environment-checked tests)
 
-Run in a chat with memory, personal preferences and the author's other skills all switched off, checked before every round. Each answer comes from a fresh sub-agent. All 44 raw answers are published in [`evals/clean-runs/`](evals/clean-runs/); details in [`evals/RESULTS.md`](evals/RESULTS.md).
+Run in a chat with memory, personal preferences and the author's other skills all switched off. Before every round, the runner and a sub-agent reported what they could see about the user and found nothing beyond the account email; this lowers the risk of hidden influences but cannot rule it out. Each answer comes from a fresh sub-agent with the skill pasted in. All raw answers are published in [`evals/clean-runs/`](evals/clean-runs/); details in [`evals/RESULTS.md`](evals/RESULTS.md).
 
 Main message: "I want to learn practical skills that improve my quality of life, such as photography and cooking. Please make me a full learning plan." (asked in Chinese)
 
-- **Without the skill**, 5 of 5 answers built the plan around the two examples, calling them "core" or "the main line".
-- **v1.0.0** named the category and labeled the items 5 of 5, but still called the examples "core" in 3 of 5.
-- **v1.1.0** named the category and labeled the items 5 of 5, called the examples "core" 0 of 5, gave every item (added ones too) a concrete first step 5 of 5, and never pushed the user's examples to the end.
-- **New examples** (healthy habits; workplace skills): same behavior in 6 of 6.
-- **Cases that must not change** (a closed list, a format to copy, real plans, a podcast question): 8 of 8 passed.
+- **Without the skill**, 5 of 5 answers built the plan around the two examples (calling them "core" or "the main line", or making them the only focus of the first stage). This is an observation, not automatically a failure; whether it is reasonable depends on the request.
+- **v1.0.0** named the category and labeled the items 5 of 5, but still built the plan around the examples in 3 of 5.
+- **v1.1.0 itself**, a targeted regression check on the final wording (7 runs): the main message again named categories, labeled items and gave every planned item a concrete start, 3 of 3; a named channel topic (French cooking; smartphone photography for retired people) stayed on that topic, 2 of 2; a named reminder (Case 1 and a new one) stayed on the named tool and was honest about not carrying reminders into a new chat, 2 of 2. This found none of the target problems, but it is too small to show the version is stable.
+- **The draft before v1.1.0, on new examples** (healthy habits; workplace skills): named the categories, labeled the items and explained the order by the goal in 6 of 6.
+- **The same draft, on cases that must not change**: a closed list, a format to copy, real plans and a podcast question all behaved as intended, 8 of 8.
 
-Honest limits: five runs per group at most, and the results were counted by the AI assistant that helped write the skill, which knew which answer came from which version. Everything is published so you can recount it.
+Honest limits:
+- Five runs per group at most, mostly on one message.
+- The results were counted by the AI assistant that helped write the skill, which knew which answer came from which version. OpenAI Codex then rechecked the counts and corrected several; the numbers here are the corrected ones. Everything is published so you can recount it.
+- The skill was pasted into each run. This shows how well a model follows it once loaded, not whether it triggers by itself or how it behaves when the agent reads only its description.
 
 ### v1.0.0 (earlier tests)
 
-These were run with the author's saved personal preferences still on, which included a rule about examples, so they are weaker evidence than the clean tests. The full cases and expected behaviour are in [`evals/evals.json`](evals/evals.json).
+These were run with the author's saved personal preferences still on, which included a rule about examples, and their raw answers were not kept, so they cannot be checked independently. Treat them as a historical record. The full cases and expected behaviour are in [`evals/evals.json`](evals/evals.json).
 
 - **Long message with examples buried inside** (the main problem this skill solves), tested with two different messages:
   - A real message from the author, kept private: without the skill about 1.5 of 5 criteria met; with it, **5 of 5 in 2 out of 2 runs**.
@@ -67,7 +70,7 @@ Honest limits: each case was run only a few times, and the answers were graded b
 ## When it triggers
 
 - Example markers in English or Chinese: "for example", "for instance", "e.g.", "such as", "things like", "like" (when it introduces examples), "比如", "比如说", "例如", "举个例子", "打个比方", "像……这种", and similar.
-- A single named thing that clearly stands for a whole category, even with no marker words (e.g. "make a channel about French cooking for English speakers").
+- A single named thing, even with no marker words, when the message clearly shows it stands for a whole category. A single named topic with no such sign (e.g. "make a channel about French cooking for English speakers") is treated as your chosen topic.
 
 ## When it does not trigger
 
@@ -78,14 +81,14 @@ Honest limits: each case was run only a few times, and the answers were graded b
 
 ## What it guards against
 
-- **Answering the examples instead of the request:** the examples take over the answer, and what you actually asked for never gets answered. This is the most common failure, and the main one this skill fixes.
+- **Answering the examples instead of the request:** the examples take over the answer, and what you actually asked for never gets answered. This is the most common failure, and the main one this skill targets.
 - **Too little:** handing your examples back as the whole answer, or stopping after doing exactly the items you named.
 - **Too much:** burying your request under a flood of additions, drifting outside the category, or replacing your examples with the assistant's own.
 
 ## How to know it's working
 
 - The answer opens with one sentence naming the categories it understood, e.g. "Got it: you want to learn skills at the level of business and video creation." If that sentence is wrong, correct it right there.
-- Your examples are named, but not answered at length.
+- Your examples are named, but they do not take over the answer just because you gave them; how much detail each item gets follows your goal.
 - If your examples are things you actually plan to do, each one gets a concrete answer first, and extras come in a separate section at the end.
 - Your items and the assistant's are labeled separately, e.g. "Your examples: …" and "Added: …".
 - In a plan, the order follows your goal. Your examples are not automatically put first, and not pushed to the end either, and every item gets at least one concrete first step.
@@ -126,7 +129,7 @@ $skill-installer install the skill from GitHub repo reshiramsq18-alt/examples-ar
 
 ## Changes
 
-- **1.1.0:** decides from the whole message whether examples are real plans; keeps your examples as ordinary members of their category instead of the "core"; sets order and depth by your goal, without pushing your examples to the back; gives every item in a plan a concrete first step. Retested in a clean setup (see above).
+- **1.1.0:** decides from the whole message whether examples are real plans; does not make your examples central just because you named them; sets order and depth by your goal, without pushing your examples to the back; gives every item in a plan a concrete first step; treats a single named topic or tool as your choice unless the message shows it stands for more. Retested in an environment-checked setup, including a 7-run regression check on the final wording (see above).
 - **1.0.0:** first release.
 
 ## License

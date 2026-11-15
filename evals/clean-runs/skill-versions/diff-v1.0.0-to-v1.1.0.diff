@@ -1,0 +1,82 @@
+diff --git a/evals/clean-runs/skill-versions/v1.0.0.md b/evals/clean-runs/skill-versions/v1.1.0.md
+index d80d2aa..ac67511 100644
+--- a/evals/clean-runs/skill-versions/v1.0.0.md
++++ b/evals/clean-runs/skill-versions/v1.1.0.md
+@@ -1,5 +1,5 @@
+ ---
+ name: examples-are-not-requirements
+-description: 'Treats user examples as illustrations of a category, not a complete list: identify the category, then add relevant items the user did not mention. Start by restating in one sentence which categories the examples point to, then work at that level instead of answering the examples in detail; label the user examples separately, and add what they would not think of on their own, without filler. If the examples are things the user really plans to do, answer each concretely first, then add a separate section. Triggers include: "for example", "for instance", "e.g.", "such as", "things like", "like" (when it introduces examples), "比如", "比如说", "例如", "举个例子", "打个比方", "像……这种". Also use when one named thing clearly stands for a whole category, even without marker words. Do NOT use when the user gives an explicit closed list ("just these", "only these", "do exactly this"), when they give no examples at all, or when the examples show a format or style to copy rather than content to expand.'
++description: 'Treats user examples as illustrations of a category, not a complete list: identify the category, then add relevant items the user did not mention. Start by restating in one sentence which categories the examples point to, then work at that level instead of letting the examples take over the answer; label the user examples separately, and add what they would not think of on their own, without filler. If the examples are things the user really plans to do, answer each concretely first, then add a separate section. Triggers include: "for example", "for instance", "e.g.", "such as", "things like", "like" (when it introduces examples), "比如", "比如说", "例如", "举个例子", "打个比方", "像……这种". Also use when one named thing clearly stands for a whole category, even without marker words. Do NOT use when the user gives an explicit closed list ("just these", "only these", "do exactly this"), when they give no examples at all, or when the examples show a format or style to copy rather than content to expand.'
+ ---
+ 
+@@ -21,5 +21,5 @@ Signals that it is an example (illustrating a type):
+ - for example, for instance, e.g., such as, things like, like
+ - A sentence like "things I can do now, like writing a plan or making a budget" — they are naming a category by giving two members of it.
+-- A single named thing with no marker words, when the context shows it stands for a type (see Case 1 and Case 4). But if the user names one specific thing as the actual target ("fix this file", "book this flight"), that is a requirement, not an example.
++- A single named thing with no marker words, when the context shows it stands for a type. If nothing in the message shows that, treat it as the user's chosen target (see Case 1 and Case 4). But if the user names one specific thing as the actual target ("fix this file", "book this flight"), that is a requirement, not an example.
+ 
+ Signals that it is a requirement (do exactly this):
+@@ -34,18 +34,21 @@ Default: if the user used "for example", "such as", "比如", "例如", or an eq
+ Sometimes the examples are things the user actually means to do, e.g. "I want to do a few new things, like learning to bake bread or starting to run. How do I start?" Here the user wants to know about those things in their own right.
+ 
++Decide this from the whole message, not from single words. Treat the examples as real plans when the user shows they have chosen those specific things: they ask how to start them, give personal details or a timeline for them, or the request is only about those few things. When the user asks for something broad, such as a full plan for a whole area, the examples usually illustrate that area, even if the user would enjoy them too. If you can't tell, take the illustration path and say how you read it in your opening sentence, so the user can correct you.
++
+ - Answer each of them concretely first: real steps they can follow.
+ - Then add one separate, clearly labeled section at the end for anything extra: steps they didn't mention, related things they might also like.
+ - Don't mix the extras into the main answer, and don't put them first.
+ 
+-The four steps below are for examples that illustrate a wider request ("I want to learn lots of things, like..."), not for real plans.
++The five steps below are for examples that illustrate a wider request ("I want to learn lots of things, like..."), not for real plans.
+ 
+-## Expand in four steps
++## Expand in five steps
+ 
+-When you receive examples, follow these four steps:
++When you receive examples, follow these five steps:
+ 
+ 1. Restate the request at the category level: before anything else, say in one plain sentence which categories you can see in the examples. Name what the examples have in common, not a paraphrase of the request. E.g. for "things that help me run a podcast, like finding guests or mixing audio": "Got it: finding guests and mixing audio, one is about people and one is about sound, both things a podcast needs beyond having something to say." Don't just repeat the user's request in other words, and don't set up a contrast that corrects the user ("you want X, not just Y") when they never said Y. This sentence is how you state your assumption, so the user can correct you right away. Don't open by answering the examples themselves.
+ 2. Identify the category behind each example: different examples can point to different categories. "Finding guests" points to outreach; "mixing audio" points to sound production. Don't force them all into one category. If the user says "things I can do now, like writing a plan or making a budget", the category is "actionable items", not just plans and budgets.
+-3. Expand at the category level: within each category, find the other members the user didn't mention, especially ones they might not think of on their own (for outreach: interview prep, promoting episodes, following up with guests). Where categories connect, say so (good interview prep means less editing later). Actually think it through (and search, if you have tools) — don't just rephrase their examples. Keep the user's own examples in as named members, but don't let explaining them take over the answer, and don't replace them. Add what is genuinely useful, including whole categories the user didn't think of, but skip filler and stay inside the user's goal.
+-4. Label clearly: when you hand back the answer, mark the user's examples as "examples" and yours as "added", so the user can see at a glance which are theirs and which you added. Don't mix them together as if all of it came from them.
++3. Expand at the category level: within each category, find the other members the user didn't mention, especially ones they might not think of on their own (for outreach: interview prep, promoting episodes, following up with guests). Where categories connect, say so (good interview prep means less editing later). Actually think it through (and search, if you have tools) — don't just rephrase their examples. Keep the user's own examples in the answer as members of their category. Being named by the user does not by itself make an example more central than the items you add. Don't let explaining them take over the answer, and don't replace them. Add what is genuinely useful, including whole categories the user didn't think of, but skip filler and stay inside the user's goal.
++4. Set depth and order by the user's goal, not by who named it: if the answer is a plan, a schedule or a ranked list, decide what comes first, what gets the most time, and what gets the most detail by how much each item serves the user's goal. Being one of the user's examples is not, by itself, a reason to go first or to get more detail. But the user naming something is often a sign that it is on their mind and that they are interested in it; judge this from the context. Where that interest is real, it is part of their goal: interest keeps people going. So don't push an example to the back just to avoid favoring it; place it where the goal, including the user's interest, puts it. When you explain the order, give the reason in terms of the user's goal (used every day, quick to show results, builds a base for later items), and don't talk about whether something was the user's example. This does not mean equal depth for everything: some items deserve more than others. But every item you keep in the plan, example or added, gets at least one concrete first step, not just a name.
++5. Label clearly: when you hand back the answer, mark the user's examples as "examples" and yours as "added", so the user can see at a glance which are theirs and which you added. Don't mix them together as if all of it came from them.
+ 
+ ## When you are not sure
+@@ -63,9 +66,10 @@ Each of these is a way to get this skill wrong. The "tell" is how you can spot i
+ 
+ - **Answering the examples instead of the request.** Tell: most of your answer explains the examples themselves (a full guide to booking guests, a detailed mixing tutorial), and the user's actual request (learning what running a podcast takes) never gets answered at the level they asked.
++- **Giving the examples the most room by default.** Tell: you added other items, but the examples still go first, get the most weeks in the schedule, or are the only items with concrete steps, while the added items get one line each, and nothing about the user's goal explains why. The opposite is also wrong: pushing an example to the very end, or calling it less important, only to show you are not favoring it.
+ - **Handing the examples back as the answer.** Tell: your answer contains only the items the user named, nothing added. Doing only those is the same as doing nothing.
+ - **Turning examples into a task list.** Tell: the user gave 2 examples and you stopped after doing exactly those 2.
+ - **Treating "the user didn't mention it" as "the user doesn't want it."** Tell: you left something out only because the user didn't say it. They probably just didn't think of it.
+-- **Over-expanding.** Tell: your additions bury or outrank the user's examples, drift outside the category, or crowd out what the user actually asked for.
+-- **Replacing the user's examples.** Tell: the user's own examples are missing or demoted in your answer. Expand around them; don't swap them out.
++- **Over-expanding.** Tell: your additions push the user's examples out of the answer, drift outside the category, or crowd out what the user actually asked for.
++- **Replacing the user's examples.** Tell: the user's own examples are missing from your answer. Expand around them; don't swap them out.
+ 
+ ## When NOT to use this skill
+@@ -78,9 +82,9 @@ Each of these is a way to get this skill wrong. The "tell" is how you can spot i
+ ## Cases (practice on these)
+ 
+-### Case 1: One tool named — just an example
++### Case 1: One tool named for one task
+ 
+ - The user has mentioned two other tools they like, "Quick Cut" and "Text Copy", either earlier in this conversation or in a past one that you can remember. Now they say: "Next time I'm batch-processing images, remind me about the 'Image Workshop' tool."
+-- Wrong: when the time comes, mention only "Image Workshop".
+-- Right: recognize the category is "useful tools the user has shared". When they need one, bring up "Image Workshop" together with "Quick Cut" and "Text Copy". Use whatever you can actually see: earlier messages, or saved memory if you have it. If you have neither, say so instead of promising a reminder you can't give.
++- Wrong: when the time comes, also bring up "Quick Cut" and "Text Copy" just because they belong to the same list of shared tools, even though they don't help with batch-processing images.
++- Right: remind them about "Image Workshop" for the task they named. Mention another shared tool only if it actually helps with that same task. If the user asks for a wider scope, such as "remind me of all the tools I've shared", follow that scope instead. Being able to see a wider category ("tools the user has shared") is not, by itself, a reason to widen what the user asked for. Use whatever you can actually see: earlier messages, or saved memory if you have it. If you have neither, say so instead of promising a reminder you can't give.
+ 
+ ### Case 2: Things to learn, like photography, cooking, gardening
+@@ -101,7 +105,7 @@ Each of these is a way to get this skill wrong. The "tell" is how you can spot i
+ 
+ - User: "Make a channel about French cooking for English speakers."
+-- Wrong: treat "French cooking" as the only topic and plan around it alone.
+-- Right: recognize the category is "a cross-language content bridge" — explaining one culture to people from another. French cooking is one example; others include French poetry, French history, French film. Pick the bridge first, then choose which topics to build on it.
+-- Note: there are no marker words here — this is the single-representative case. Still plan the French cooking channel they asked for; the other topics are additions, not a replacement.
++- Wrong: plan the channel around French poetry, history and film as well, as if French cooking were only an example.
++- Right: plan the French cooking channel they asked for. Nothing in the message shows that French cooking stands for a wider category, so it is their chosen topic. At most, add one short, clearly optional note at the end, for example that the same idea (explaining one culture to people from another) could later carry other topics such as French film, or ask one question if you can't tell.
++- Note: a single named thing is the user's chosen target unless the message gives a clear sign that it stands for more.
+ 
+ ### Case 5: A long message with examples buried inside

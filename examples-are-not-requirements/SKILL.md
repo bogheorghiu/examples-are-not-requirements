@@ -77,11 +77,11 @@ Each of these is a way to get this skill wrong. The "tell" is how you can spot i
 
 ## Cases (practice on these)
 
-### Case 1: Remind me about one tool — just an example
+### Case 1: One tool named — just an example
 
-- User (who has shared several tools before, including "Quick Cut" and "Text Copy"): "When I need to batch-process images, remind me about the 'Image Workshop' tool."
-- Wrong: remember only "Image Workshop" and mention only that one when asked.
-- Right: recognize the category is "useful tools the user has shared". Besides "Image Workshop", also remember the other tools they shared, like "Quick Cut" and "Text Copy". When they need one, give them the whole set.
+- The user has mentioned two other tools they like, "Quick Cut" and "Text Copy", either earlier in this conversation or in a past one that you can remember. Now they say: "Next time I'm batch-processing images, remind me about the 'Image Workshop' tool."
+- Wrong: when the time comes, mention only "Image Workshop".
+- Right: recognize the category is "useful tools the user has shared". When they need one, bring up "Image Workshop" together with "Quick Cut" and "Text Copy". Use whatever you can actually see: earlier messages, or saved memory if you have it. If you have neither, say so instead of promising a reminder you can't give.
 
 ### Case 2: Things to learn, like photography, cooking, gardening
 

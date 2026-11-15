@@ -1,0 +1,78 @@
+[
+  {
+    "name": "english-marker-expand",
+    "skills": ["examples-are-not-requirements"],
+    "query": "I need some tools for video editing, for example a subtitle generator and a color grading tool. What else should I get?",
+    "expected_behavior": [
+      "Keeps the subtitle generator and color grading tool in the answer, near the top",
+      "Adds a few other video-editing tools the user did not mention",
+      "Labels the user's examples separately from the added items"
+    ]
+  },
+  {
+    "name": "chinese-marker-expand",
+    "skills": ["examples-are-not-requirements"],
+    "query": "推荐几本书，比如《活着》这种。",
+    "expected_behavior": [
+      "Treats 《活着》 as an example of a kind of book, not the only book wanted",
+      "Recommends other books of the same kind",
+      "Labels the user's example separately from the added recommendations"
+    ]
+  },
+  {
+    "name": "single-representative-no-marker",
+    "skills": ["examples-are-not-requirements"],
+    "query": "I want to start a YouTube channel about Japanese tea ceremony for Western viewers.",
+    "expected_behavior": [
+      "Still plans the tea ceremony channel the user asked for",
+      "States its assumption that tea ceremony may stand for a wider category, or asks one question",
+      "Any added topics stay inside the same category and are labeled as additions"
+    ]
+  },
+  {
+    "name": "closed-list-no-expand",
+    "skills": ["examples-are-not-requirements"],
+    "query": "Buy exactly these three items and nothing else: a notebook, a pen, and a USB cable.",
+    "expected_behavior": [
+      "Lists only the notebook, the pen and the USB cable",
+      "Adds no extra items or suggestions for other items"
+    ]
+  },
+  {
+    "name": "no-examples-no-expand",
+    "skills": ["examples-are-not-requirements"],
+    "query": "Write a short thank-you email to my landlord for fixing the heating.",
+    "expected_behavior": [
+      "Writes the email as asked",
+      "Does not add lists of related items or extra deliverables"
+    ]
+  },
+  {
+    "name": "format-example-match-not-expand",
+    "skills": ["examples-are-not-requirements"],
+    "query": "Write a one-line bio for me in this format, for example: 'Anna, 24, designer from Lisbon.' I'm Tom, 30, a teacher from Leeds.",
+    "expected_behavior": [
+      "Returns one line in the same format as the example",
+      "Does not expand the content or add extra bios"
+    ]
+  },
+  {
+    "name": "test-case-is-requirement",
+    "skills": ["examples-are-not-requirements"],
+    "query": "Write a Python function that squares a number. For example, input 3 should return 9.",
+    "expected_behavior": [
+      "The function returns 9 for input 3",
+      "Any extra test cases are labeled as suggestions, not changes to the requirement"
+    ]
+  },
+  {
+    "name": "ambiguous-state-assumption",
+    "skills": ["examples-are-not-requirements"],
+    "query": "Get me some snacks for the party, like crisps.",
+    "expected_behavior": [
+      "Either asks one short question or states its assumption before adding items",
+      "Asks at most one question",
+      "If it adds items, keeps crisps and labels the additions"
+    ]
+  }
+]

@@ -6,7 +6,12 @@ An agent skill that helps AI assistants stop treating your examples as a complet
 
 Have you ever given an agent an example, only for it to take that example as the actual requirement and run with it? This skill is meant to help with that.
 
-You write a long message about what you want, and somewhere in the middle you drop in a couple of examples to show what you mean. The assistant then answers the examples in detail and never gets to your actual request. With this skill, it first tells you in one sentence which categories it thinks your examples point to, then works at that level: it keeps your examples, adds relevant things you didn't mention, links the categories together, and labels which items are yours and which it added.
+It targets two failures:
+
+- **Only the examples get answered:** you write a long message about what you want, and somewhere in the middle you drop in a couple of examples to show what you mean. The assistant then answers the examples in detail and never gets to your actual request.
+- **It adds more, but your examples still come first by default:** the assistant does add other things, yet your examples are still called "the core", placed first and given the most detail, while the added items get only a name. As if the examples you mentioned in passing were the thing you wanted most.
+
+With this skill, it first tells you in one sentence which categories it thinks your examples point to, then works at that level: it keeps your examples, adds relevant things you didn't mention, links the categories together, and labels which items are yours and which it added. In a plan, order and detail follow your goal: your examples are not put first just because you gave them, and not pushed to the back either.
 
 ## Before and after
 
@@ -33,6 +38,20 @@ You write a long message about what you want, and somewhere in the middle you dr
 > If you want an order: 3, then 4, then 6. Pricing and contracts decide whether you lose money; the portfolio decides whether you get work.
 
 (Shortened from a real test answer, which also had a few points under each layer. See [Test results](#test-results).)
+
+### Second example: it adds more, but the examples still come first
+
+![The same question. Left, with v1.0: other skills are added, but the two examples are put at the core and take most of the space. Right, with v1.1: the examples come first, but sit beside the added skills, and every skill gets a first step.](assets/priority-en.png)
+
+**You:** "I want to learn practical skills that improve my quality of life, such as photography and cooking. Please make me a full learning plan." (asked in Chinese)
+
+**Without the skill:** it opens with "photography and cooking are the focus; the other skills will be woven in." Its table labels photography and cooking "main skills" and money, exercise and tidying "side skills"; photography and cooking then each get a full month-by-month section, while each side skill gets a sentence or two.
+
+**With v1.0:** it names the categories and labels "your examples / what I added", and adds eight skills. But it says "I'll put your two examples at the core" and ends with "photography and cooking always stay at the front"; the added skills sit in a "why it's worth learning" table, mostly with no way to start.
+
+**With v1.1:** "So the plan below isn't just these two; it brings in all the practical skills that clearly improve your life." Its first stage puts cooking and photography next to money and first aid, each with a first step, such as "install a budgeting app today" or "book a first-aid course". The examples still start early, for reasons tied to your goal: one is used every day, the other is something you already want to do.
+
+(All three are real answers from the environment-checked tests, translated from Chinese. Originals: round-1/883.md, round-1/519.md and round-4/935.md in [`evals/clean-runs/`](evals/clean-runs/).)
 
 ## Test results
 
@@ -82,6 +101,7 @@ Honest limits: each case was run only a few times, and the answers were graded b
 ## What it guards against
 
 - **Answering the examples instead of the request:** the examples take over the answer, and what you actually asked for never gets answered. This is the most common failure, and the main one this skill targets.
+- **Adding more, but your examples still come first by default:** other things are added, but the examples are called "the core", placed first and given the most detail, while the added items get only a name, and nothing in your goal explains why. The opposite is also wrong: pushing your examples to the back just to look unbiased.
 - **Too little:** handing your examples back as the whole answer, or stopping after doing exactly the items you named.
 - **Too much:** burying your request under a flood of additions, drifting outside the category, or replacing your examples with the assistant's own.
 

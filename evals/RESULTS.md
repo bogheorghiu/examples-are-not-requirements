@@ -14,7 +14,7 @@ How:
 Limits:
 
 - Five runs per group at most, mostly on one message.
-- The counting was done by the AI assistant that helped write the skill, and it saw the keys, so it was not blind. The counts were then rechecked by OpenAI Codex, which corrected several of them; the numbers below are the corrected ones.
+- The counting was done by the AI assistant that helped write the skill, and it saw the keys, so it was not blind. OpenAI Codex rechecked the counts for rounds 1–3 and corrected several, and pointed out the round 4 error above; the numbers below are the corrected ones. Codex did not recount everything, so this is not an endorsement of every number.
 - Pasting the skill in tests how well a model follows it once loaded. It does not test whether the skill triggers by itself, whether the agent actually opens the file, or how it behaves from the description alone.
 - Round 2's model was not checked, and round 4's runner did not report it back.
 - The environment checks rely on the runner and a sub-agent reporting what they can see. They found no user information, but cannot rule out every hidden influence, so these are "environment-checked" tests, not proof of a perfectly clean setup.
@@ -68,12 +68,12 @@ Patch 5: naming something is a sign of interest, which is part of the goal, so a
 
 After an outside review, the final version changed the description, Case 1, Case 4 and the wording on how much weight examples get. Round 4 checks those changes. The scoring rules were fixed before any answer was generated ([`clean-runs/round-4/rubric.md`](clean-runs/round-4/rubric.md)); item-by-item scores with quotes are in [`clean-runs/round-4/scores.md`](clean-runs/round-4/scores.md).
 
-- **Main message, 3 runs:** names the categories, labels items, adds unmentioned skills, gives every item in the staged plan a concrete starting action, and explains the order by the goal, 3 of 3. No answer stated its own rule. Both examples started in the first stage each time, with goal-based reasons ("used every day", "interest keeps you going").
+- **Main message, 3 runs:** names the categories, labels items, adds unmentioned skills and explains the order by the goal, 3 of 3. Every item in the staged plan has a concrete starting action in 2 of 3: in 935, one "first step" ("save three months of living costs as an emergency fund") is a goal, not an action. This was first scored as a pass and corrected after review (see `scores.md`). No answer stated its own rule. Both examples started in the first stage each time, with goal-based reasons ("used every day", "interest keeps you going").
 - **A named channel topic, 1 run each:** the original French cooking case and a new one ("a channel teaching smartphone photography to retired people"). Both stayed on the named topic and audience; other directions appeared only as one line marked optional.
 - **A named reminder, 1 run each:** the original Case 1 and a new one ("remind me to use 压缩宝 when I compress videos", with two unrelated tools mentioned). Both reminded only about the named tool for the named task, and both said honestly that they cannot carry a reminder into a new chat.
 - **Noticed while scoring:** one answer (910) also promised, unasked, to remind the user about the other two tools for other tasks. The frozen rules did not cover this, so it is recorded as an observation, not a failure.
 
-Conclusion: these 7 targeted regression checks found none of the target problems. This does not show the version is stable, and does not test whether it triggers by itself after a normal install.
+Conclusion: across these 7 targeted regression checks, one item did not meet the frozen rules (935, a goal written as a first step); no other target problem was found. This does not show the version is stable, and does not test whether it triggers by itself after a normal install.
 
 ## v1.0.0 tests (historical)
 

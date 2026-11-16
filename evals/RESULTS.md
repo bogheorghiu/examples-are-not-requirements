@@ -14,7 +14,7 @@ How:
 Limits:
 
 - Five runs per group at most, mostly on one message.
-- The counting was done by the AI assistant that helped write the skill, and it saw the keys, so it was not blind. OpenAI Codex rechecked the counts for rounds 1–3 and corrected several, and pointed out the round 4 error above; the numbers below are the corrected ones. Codex did not recount everything, so this is not an endorsement of every number.
+- The counting was done by the AI assistant that helped write the skill, and it saw the keys, so it was not blind. OpenAI Codex rechecked the counts for rounds 1–3 and corrected several; for round 4 it read the 7 raw answers and corrected one score (935). This was a review, not an independent rerun. The numbers below are the corrected ones.
 - Pasting the skill in tests how well a model follows it once loaded. It does not test whether the skill triggers by itself, whether the agent actually opens the file, or how it behaves from the description alone.
 - Round 2's model was not checked, and round 4's runner did not report it back.
 - The environment checks rely on the runner and a sub-agent reporting what they can see. They found no user information, but cannot rule out every hidden influence, so these are "environment-checked" tests, not proof of a perfectly clean setup.

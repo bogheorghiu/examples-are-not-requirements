@@ -8,39 +8,26 @@ Ever given an AI a couple of examples, only to watch it focus almost entirely on
 
 ## Why I built this
 
-I often drop two examples into the middle of a long message, just to show what kind of thing I mean. The AI kept treating those two examples as the question and writing at length about them, when what I actually wanted to know went beyond those two. Later it learned to add other things, but the examples were still treated as the main point. I wrote this skill to fix both problems.
+I often drop two examples into the middle of a long message, just to show what kind of thing I mean. The AI kept treating those two examples as the question and writing at length about them, when what I actually wanted to know went beyond those two. Later it learned to add other things, but the examples were still treated as the main point. I wrote this skill to fix both problems:
 
-## What it fixes
+- **Only the examples get answered:** the answer fills up with the examples, and what you actually asked never gets answered.
+- **The examples automatically become the focus:** other things get added, but the examples are still called "the core" and given the most detail, while the added items get only a name.
 
-It targets two failures:
+## Core feature: no longer stuck on the examples
 
-- **Only the examples get answered:** you write a long message and drop in a couple of examples to show what you mean. The assistant answers the examples in detail and never gets to your actual request.
-- **The examples automatically become the focus:** the assistant does add other things, but your examples are still called "the core" and given the most detail, while the added items get only a name, and nothing in your goal explains why.
-
-With this skill, the assistant first tells you in one sentence which categories it thinks your examples point to, then works at that level: it keeps your examples, adds relevant things you didn't mention, and labels which items are yours and which it added. In a plan, order and detail follow your goal. An example you thought of first shows interest, so it can come early, but it does not take over the plan.
+With this skill, the assistant first tells you in one sentence which categories it thinks your examples point to, then works at that level: it keeps your examples, adds relevant things you didn't mention, and labels which items are yours and which it added.
 
 ![Same question, two answers: on the left, without the skill, the assistant answers the two examples in detail; on the right, with the skill, it maps the whole request and marks the two examples with a star.](assets/before-after-en.png)
 
-(The image above is from an earlier test and shows the first failure.)
+(The image above is from an earlier test.)
 
-## An example
+## New in v1.1: examples no longer become the focus automatically
 
-**You:** "I want to learn practical skills that improve my quality of life, such as photography and cooking. Please make me a full learning plan." (asked in Chinese)
+v1.0 already added other things, but your examples were still often treated as the core and given the most detail. v1.1 sets order and detail by your goal: an example you thought of first shows interest, so it can come early, but it does not take over; the added skills go into the same plan, with concrete starting actions.
 
-**Without the skill:** it opens with "photography and cooking are the focus; the other skills will be woven in." Its table labels photography and cooking "main skills" and money, exercise and tidying "side skills"; photography and cooking then each get a full month-by-month section, while each side skill gets a sentence or two.
+![The same question. Left, with v1.0: other skills are added, but the two examples are put at the core and take most of the space. Right, with v1.1: the examples come first, but sit in the same stage as the added skills, each with a concrete starting action.](assets/priority-en.png)
 
-**With the skill:** it first names the categories it understood, then puts the added skills and your examples into the same plan. Its first stage (excerpt, translated):
-
-> | Skill | First step |
-> |---|---|
-> | Cooking [your example] | Learn 3 home dishes this week: a stir-fry, a soup and a staple; make each 3 times |
-> | Money [added] | Install a budgeting app today and log every expense for 30 days, without changing anything yet |
-> | First aid [added] | Book a first-aid course with the Red Cross or a local group |
-> | Photography [your example] | Take one photo a day on your phone for 30 days, practicing one theme, such as light |
-
-Photography and cooking still start in the first stage, but the reason given is "one you use every day, the other keeps you motivated"; the added skills are in the plan too, not just names.
-
-(Both come from real tests. Originals: round-1/883.md and round-4/935.md in [`evals/clean-runs/`](evals/clean-runs/).)
+(Left is v1.0, right is v1.1, both from the environment-checked tests, translated from Chinese. Originals: round-1/519.md and round-4/935.md in [`evals/clean-runs/`](evals/clean-runs/).)
 
 ## Installation
 
@@ -116,15 +103,6 @@ The full test process, counts for every round and the historical v1.0.0 tests ar
 
 - **1.1.0:** order and detail follow your goal; an example you thought of first can come early but does not take over; planned items get a concrete starting action; decides from the whole message whether examples are real plans; treats a single named topic or tool as your chosen target unless the message shows it stands for more.
 - **1.0.0:** first release.
-
-<details>
-<summary>See a v1.0 vs v1.1 comparison</summary>
-
-![The same question. Left, with v1.0: other skills are added, but the two examples are put at the core and take most of the space. Right, with v1.1: the examples come first, but sit in the same stage as the added skills, each with a concrete starting action.](assets/priority-en.png)
-
-On the same question, v1.0 already named the categories, labeled the items and added eight skills, but it said "I'll put your two examples at the core" and ended with "photography and cooking always stay at the front". v1.1 still starts photography and cooking early, but for reasons tied to your goal and interest, with the added skills in the same stage. Originals: round-1/519.md and round-4/935.md.
-
-</details>
 
 ## License
 

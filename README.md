@@ -41,11 +41,12 @@ It asks which of your AI tools to install it for and copies the skill into the r
 
 To install by hand instead:
 
-The skill is a single folder containing `SKILL.md`:
+The skill is a single folder with two files: `SKILL.md` (the rules) and `cases.md` (worked cases the agent reads when it is unsure):
 
 ```
 examples-are-not-requirements/
-└── SKILL.md
+├── SKILL.md
+└── cases.md
 ```
 
 Copy the `examples-are-not-requirements` folder into the skills directory of any agent that supports `SKILL.md` skills. For Claude Code, that is `~/.claude/skills/` (all projects) or `.claude/skills/` inside a project.
@@ -101,6 +102,7 @@ The full test process, counts for every round and the historical v1.0.0 tests ar
 
 ## Changes
 
+- **1.1.1:** shorter `SKILL.md` (about 2,400 → 1,600 words): the six worked cases moved to a separate `cases.md`, which the agent reads only when it needs them. The rules are unchanged.
 - **1.1.0:** order and detail follow your goal; an example you thought of first can come early but does not take over; planned items get a concrete starting action; decides from the whole message whether examples are real plans; treats a single named topic or tool as your chosen target unless the message shows it stands for more.
 - **1.0.0:** first release.
 

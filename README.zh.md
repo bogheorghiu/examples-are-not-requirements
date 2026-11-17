@@ -41,11 +41,12 @@ npx skills add reshiramsq18-alt/examples-are-not-requirements
 
 也可以手动安装：
 
-这个 skill 就是一个文件夹，里面只有一个 `SKILL.md`：
+这个 skill 就是一个文件夹，里面有两个文件：`SKILL.md`（规则）和 `cases.md`（练习案例，AI 拿不准时才去读）：
 
 ```
 examples-are-not-requirements/
-└── SKILL.md
+├── SKILL.md
+└── cases.md
 ```
 
 把 `examples-are-not-requirements` 文件夹复制到任何支持 `SKILL.md` 的 agent 的 skills 目录里。Claude Code 的位置是 `~/.claude/skills/`（对所有项目生效），或者项目里的 `.claude/skills/`。
@@ -103,6 +104,7 @@ $skill-installer 从 GitHub 安装这个 skill：仓库 reshiramsq18-alt/example
 
 ## 更新记录
 
+- **1.1.1**：缩短 `SKILL.md`（正文从约 2,400 词减到约 1,600 词）：6 个练习案例挪到单独的 `cases.md`，AI 需要时才读。规则本身没有改。
 - **1.1.0**：先后和详略按你的目标定，你先想到的例子可以排在前面，但不会独占；计划里的项目都给具体的起步动作；根据整段话判断例子是不是真实计划；你只点名一个主题或工具时，除非上下文说明它代表更多，否则当作你选定的目标。
 - **1.0.0**：第一次发布。
 

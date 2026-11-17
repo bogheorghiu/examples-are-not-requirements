@@ -29,6 +29,11 @@ Signals that it is a requirement (do exactly this):
 
 Default: if the user used "for example", "such as", "比如", "例如", or an equivalent marker, treat it as an example, not a requirement.
 
+When the user has chosen a target:
+
+- When the context shows that a named item is the user's chosen target rather than an illustrative example, keep that target and its intended scope. Mention other things the user named earlier only when the request or available context shows they help with the same task. Seeing a broader category that contains them is not, by itself, a reason to broaden the task. This does not stop you from adding related items when the user is giving open-ended examples.
+- Be clear about what you can do: do not claim access to conversations or memory you can't see, or promise future reminders you can't deliver.
+
 ## When the examples are real plans
 
 Sometimes the examples are things the user actually means to do, e.g. "I want to do a few new things, like learning to bake bread or starting to run. How do I start?" Here the user wants to know about those things in their own right.

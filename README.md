@@ -27,7 +27,7 @@ v1.0 already added other things, but your examples were still often treated as t
 
 ![The same question. Left, with v1.0: other skills are added, but the two examples are put at the core and take most of the space. Right, with v1.1: the examples come first, but sit in the same stage as the added skills, each with a concrete starting action.](assets/priority-en.png)
 
-(Left is v1.0, right is v1.1, both from the environment-checked tests, translated from Chinese. Originals: round-1/519.md and round-4/935.md in [`evals/clean-runs/`](evals/clean-runs/).)
+(In the image, the left window is v1.0 and the right window is v1.1, both from the environment-checked tests, translated from Chinese. Originals: round-1/519.md and round-4/935.md in [`evals/clean-runs/`](evals/clean-runs/).)
 
 ## Installation
 

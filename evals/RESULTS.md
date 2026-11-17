@@ -66,7 +66,7 @@ Patch 5: naming something is a sign of interest, which is part of the goal, so a
 
 ### Round 4: v1.1.0, targeted regression check, 7 runs
 
-After an outside review, the final version changed the description, Case 1, Case 4 and the wording on how much weight examples get. Round 4 checks those changes. The scoring rules were fixed before any answer was generated ([`clean-runs/round-4/rubric.md`](clean-runs/round-4/rubric.md)); item-by-item scores with quotes are in [`clean-runs/round-4/scores.md`](clean-runs/round-4/scores.md).
+After an outside review, v1.1.0 changed the description, Case 1, Case 4 and the wording on how much weight examples get. Round 4 checks those changes. The scoring rules were fixed before any answer was generated ([`clean-runs/round-4/rubric.md`](clean-runs/round-4/rubric.md)); item-by-item scores with quotes are in [`clean-runs/round-4/scores.md`](clean-runs/round-4/scores.md).
 
 - **Main message, 3 runs:** names the categories, labels items, adds unmentioned skills and explains the order by the goal, 3 of 3. Every item in the staged plan has a concrete starting action in 2 of 3: in 935, one "first step" ("save three months of living costs as an emergency fund") is a goal, not an action. This was first scored as a pass and corrected after review (see `scores.md`). No answer stated its own rule. Both examples started in the first stage each time, with goal-based reasons ("used every day", "interest keeps you going").
 - **A named channel topic, 1 run each:** the original French cooking case and a new one ("a channel teaching smartphone photography to retired people"). Both stayed on the named topic and audience; other directions appeared only as one line marked optional.

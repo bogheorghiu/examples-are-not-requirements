@@ -36,4 +36,4 @@ The runner only saw neutral names, so it did not know which version was newer. F
 - For rounds 1–4, the person who counted the results (the AI assistant that helped write the skill) saw the keys, so the counting was not blind. Round 5 was graded blind by the same assistant; round 6 was graded blind by OpenAI Codex. Everything here is published so anyone can recount it.
 - Model: Claude Opus 5.5 was selected for rounds 1, 3, 4, 5 and 6 (round 4's runner did not report the model back); round 2 was not checked and may have run on Opus 4.8.
 - Pasting the skill in tests how well a model follows it once loaded, not whether it triggers by itself.
-- Five runs per group at most.
+- Seven runs per group at most.

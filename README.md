@@ -86,7 +86,7 @@ $skill-installer install the skill from GitHub repo reshiramsq18-alt/examples-ar
 
 ## Test summary
 
-The final version (v1.1.0) was tested in a chat with memory, personal preferences and the author's other skills switched off. Before each round there was an environment check: the runner and a sub-agent reported what they could see about the user and found nothing beyond the account email the system adds automatically. This lowers the risk of hidden influences but cannot rule it out.
+v1.1.0 and v1.1.1 were tested in a chat with memory, personal preferences and the author's other skills switched off. Before each round there was an environment check: the runner and a sub-agent reported what they could see about the user and found nothing beyond the account email or time zone the system adds automatically. This lowers the risk of hidden influences but cannot rule it out.
 
 - **Main message, without the skill:** 5 of 5 answers built the plan around the two examples.
 - **Main message, v1.1.0:** 3 of 3 named the categories, labeled the items and put the added skills into the same plan; none called the examples the core. In one answer (935), one "first step" was a goal ("save three months of living costs as an emergency fund"), not a concrete starting action.
@@ -96,7 +96,7 @@ The final version (v1.1.0) was tested in a chat with memory, personal preference
 - **v1.1.1 (shorter `SKILL.md`):** run side by side with v1.1.0, 7 runs each, graded blind by OpenAI Codex. No problem found that v1.1.1 has and v1.1.0 does not; both versions sometimes wrote a goal instead of a concrete first step for a later item. Details in [`evals/RESULTS.md`](evals/RESULTS.md).
 
 Limits:
-- Five runs per group at most; the final version ran the main message only 3 times, so this does not show it is stable.
+- Seven runs per group at most; each version ran the main message only 3 times, so this does not show it is stable.
 - The counting was done by the AI assistant that helped write the skill, which knew which answer came from which version. OpenAI Codex rechecked the counts for rounds 1–3 and corrected several; for round 4, Codex read the 7 raw answers and corrected one score (935). This was a review, not an independent rerun. All raw answers are published so you can recount them.
 - The skill was pasted into each run. This shows how well a model follows it once loaded, not whether it triggers by itself or how it behaves from the description alone.
 

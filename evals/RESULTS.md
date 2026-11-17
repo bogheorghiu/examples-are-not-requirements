@@ -75,6 +75,25 @@ After an outside review, the final version changed the description, Case 1, Case
 
 Conclusion: across these 7 targeted regression checks, one item did not meet the frozen rules (935, a goal written as a first step); no other target problem was found. This does not show the version is stable, and does not test whether it triggers by itself after a normal install.
 
+## v1.1.1: shorter SKILL.md, rounds 5–6
+
+v1.1.1 moves the six worked cases from `SKILL.md` into `cases.md` in the same folder, and adds two short rules distilled from Case 1 to the main text. A program checked that the cases moved word for word ([`clean-runs/round-5/file-integrity-check.md`](clean-runs/round-5/file-integrity-check.md)). Both rounds pasted `SKILL.md` without `cases.md`, ran v1.1.0 at the same time as a baseline, interleaved the runs, and used the same 5 messages and 7 runs per version as round 4.
+
+### Round 5: cases moved out, rules unchanged
+
+Graded blind by Claude ([`clean-runs/round-5/`](clean-runs/round-5/)). No failures in either group under the frozen rules. Two differences between the groups, recorded as observations: on both reminder messages the candidate also listed the user's other tools as preferences and suggested saving them, once guessing what a tool does from its name; on the main message it put both examples in the first stage 3 of 3 times (v1.1.0: 1 of 3). A check then found that Case 1 carried constraints the main text did not state (mention other tools only when they help the same task; seeing a wider category is not a reason to widen the task; say what you cannot do instead of promising it). This candidate was not released. Later correction: Claude did not check each "advanced" item's first step in this round, which is inconsistent with round 4; under the stricter reading, both groups may have 1d failures.
+
+### Round 6: the released v1.1.1
+
+The two distilled rules were added under "When the user has chosen a target". Sub-agents wrote their own answers to files, so no answer was copied by hand. Graded blind by OpenAI Codex; Claude also graded but knew which version was which ([`clean-runs/round-6/comparison.md`](clean-runs/round-6/comparison.md)).
+
+- v1.1.0: 1 failure (581, a goal written as a first step), 1 unclear (442, said it would remember in later chats once memory is on).
+- v1.1.1: 1 failure (899, an optional item whose first step was only "pick one of these", and an advanced cooking item with no concrete action).
+- No failure type new to v1.1.1 and no rise in failure count, so it met the release rule fixed in advance. On the reminder messages, neither group added other tools, guessed tool functions or claimed to have saved anything.
+- Both versions sometimes give later "advanced" or optional items a goal or a direction instead of a concrete first step. This is shared, not caused by the split.
+
+Conclusion: in these targeted regression checks, no problem was found that v1.1.1 has and v1.1.0 does not. This does not show the two versions behave the same, and automatic triggering and reading `cases.md` after a normal install are still untested.
+
 ## v1.0.0 tests (historical)
 
 These ran with personal preferences on (see the correction below), and their raw answers were not kept, so they cannot be checked independently. Treat them as a historical record, weaker than the environment-checked tests above.

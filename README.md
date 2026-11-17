@@ -93,6 +93,8 @@ The final version (v1.1.0) was tested in a chat with memory, personal preference
 - **A single named topic or tool, v1.1.0:** both channel requests (French cooking; smartphone photography for retired people) stayed on the named topic; neither reminder request mixed other tools into the reminder for the named task, and both said honestly that they cannot carry a reminder into a new chat. One also offered, unasked, reminders for other tasks, recorded as an observation.
 - **The draft just before v1.1.0** (a few wording changes apart): on two new sets of examples (healthy habits; workplace skills) it named categories, labeled items and explained the order by the goal in 6 of 6; on a closed list, a format to copy, real plans and a podcast question it behaved as intended in 8 of 8.
 
+- **v1.1.1 (shorter `SKILL.md`):** run side by side with v1.1.0, 7 runs each, graded blind by OpenAI Codex. No problem found that v1.1.1 has and v1.1.0 does not; both versions sometimes wrote a goal instead of a concrete first step for a later item. Details in [`evals/RESULTS.md`](evals/RESULTS.md).
+
 Limits:
 - Five runs per group at most; the final version ran the main message only 3 times, so this does not show it is stable.
 - The counting was done by the AI assistant that helped write the skill, which knew which answer came from which version. OpenAI Codex rechecked the counts for rounds 1–3 and corrected several; for round 4, Codex read the 7 raw answers and corrected one score (935). This was a review, not an independent rerun. All raw answers are published so you can recount them.
@@ -102,7 +104,7 @@ The full test process, counts for every round and the historical v1.0.0 tests ar
 
 ## Changes
 
-- **1.1.1:** shorter `SKILL.md` (about 2,400 → 1,600 words): the six worked cases moved to a separate `cases.md`, which the agent reads only when it needs them. The rules are unchanged.
+- **1.1.1:** shorter `SKILL.md` (about 2,400 → 1,700 words): the six worked cases moved to a separate `cases.md`, which the agent reads when it needs them, and two short rules from Case 1 now sit in the main text (keep to a target the user has chosen; say what you cannot do instead of promising it).
 - **1.1.0:** order and detail follow your goal; an example you thought of first can come early but does not take over; planned items get a concrete starting action; decides from the whole message whether examples are real plans; treats a single named topic or tool as your chosen target unless the message shows it stands for more.
 - **1.0.0:** first release.
 
